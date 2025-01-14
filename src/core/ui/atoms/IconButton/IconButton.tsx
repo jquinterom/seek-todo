@@ -16,6 +16,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         {...props}
         onClick={props.onClick}
         typeButton={typeButton}
+        role="button"
       >
         {NewIcon}
       </Button>

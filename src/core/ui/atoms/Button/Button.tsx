@@ -32,15 +32,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={twMerge(
           classByType[typeButton],
-          "px-4 py-2 rounded-md",
-
+          "px-4 py-2 rounded-md items-center",
           props.className
         )}
         type={type || "button"}
         onClick={props.onClick}
         disabled={loading}
       >
-        {loading && <LoadingSpinner />}
+        {loading && (
+          <div className="w-full flex items-center justify-center">
+            <LoadingSpinner size={20} />
+          </div>
+        )}
         {!loading && children}
       </button>
     );

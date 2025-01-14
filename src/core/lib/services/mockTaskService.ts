@@ -15,7 +15,7 @@ const updateTaskInLocalStorage = (tasks: Task[], userId: string) => {
 
 const deleteTaskFromLocalStorage = (id: number, userId: string) => {
   const keyTasks = "tasks" + userId;
-  const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+  const tasks = JSON.parse(localStorage.getItem(keyTasks) || "[]");
   const index = tasks.findIndex((task: { id: number; }) => task.id === id);
   tasks.splice(index, 1);
   localStorage.setItem(keyTasks, JSON.stringify(tasks));

@@ -7,6 +7,7 @@ import Button from "@/core/ui/atoms/Button/Button";
 import Checkbox from "@/core/ui/atoms/Checkbox/Checkbox";
 import { IconButton } from "@/core/ui/atoms/IconButton/IconButton";
 import { Input } from "@/core/ui/atoms/Input/Input";
+import LoadingSpinner from "@/core/ui/atoms/LoadingSpinner/LoadingSpinner";
 import { FiLogOut } from "react-icons/fi";
 import { MdDeleteOutline, MdOutlineUpdate } from "react-icons/md";
 
@@ -50,7 +51,10 @@ export default function TodoApp() {
 
       <ul className="space-y-2">
         {tasks.map((task) => (
-          <li key={task.id} className="flex items-center space-x-2">
+          <li
+            key={task.id}
+            className="flex items-center space-x-2 justify-between"
+          >
             <Checkbox
               id={`task-${task.id}`}
               text={task.text}
@@ -59,22 +63,27 @@ export default function TodoApp() {
               key={task.id}
             />
 
-            <IconButton
-              icon={<MdDeleteOutline size={20} />}
-              onClick={() => handleRemove(task.id)}
-              typeButton="danger"
-            />
+            <div className="flex items-center space-x-2">
+              {!task.completed && (
+                <IconButton
+                  icon={<MdOutlineUpdate size={20} />}
+                  onClick={() => handleSetTaskToUpdate(task)}
+                />
+              )}
 
-            {!task.completed && (
               <IconButton
-                icon={<MdOutlineUpdate size={20} />}
-                onClick={() => handleSetTaskToUpdate(task)}
+                icon={<MdDeleteOutline size={20} />}
+                onClick={() => handleRemove(task.id)}
+                typeButton="danger"
               />
-            )}
+            </div>
           </li>
         ))}
+
         {loading && (
-          <div className="flex items-center justify-center">Loading...</div>
+          <div className="flex items-center justify-center">
+            <LoadingSpinner size={25} color="border-blue-500" />
+          </div>
         )}
       </ul>
     </div>
