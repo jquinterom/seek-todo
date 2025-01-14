@@ -13,7 +13,7 @@ cd seek-todo
 
 ```bash
 bun install
-or
+# or
 npm install
 ```
 
@@ -30,26 +30,29 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Use this credentials
 
 ```
-user: john.doe@example.com
-password: password
+USER: john.doe@example.com
+PASSWORD: password
 ```
 
 ## Test 
 If you want to run test:
 ```bash
 bun run test
-or
+# or
 npm test
 ```
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Tech
+- Next.js
+- Tailwind CSS
 - Zustand
 - React Test Library
 - Jest
 - React Icons
 - Typescript
+- bun
 
 ## Deploy on Vercel
 This project is deploying on Vercel Platform, you can see on [Seek-todo](https://seek-todo.vercel.app/). 

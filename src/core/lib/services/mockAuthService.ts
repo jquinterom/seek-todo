@@ -1,8 +1,8 @@
-import { UserType } from "@/core/types/userType";
+import { UserModel } from "@/core/models/UserModel";
 
 export interface LoginResponse {
   token: string;
-  user: UserType;
+  user: UserModel;
 }
 
 export const mockAuthService = {

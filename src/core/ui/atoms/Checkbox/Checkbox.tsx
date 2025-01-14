@@ -1,14 +1,16 @@
 import { forwardRef } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
   text: string;
   checked: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void; // Cambiado
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  classNameLabel?: string;
 }
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ id, text, checked, onChange, ...props }, ref) => {
+  ({ id, text, checked, onChange, classNameLabel = "", ...props }, ref) => {
     return (
       <div className="flex items-center">
         <input
@@ -19,13 +21,14 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           checked={checked} // Controlado
           onChange={onChange} // Handler asociado
           data-testid="checkbox"
-          className={props.className}
         />
         <label
           htmlFor={id}
-          className={`ml-2 text-gray-900 w-full ${
-            checked ? "line-through text-gray-500" : ""
-          }`}
+          className={twMerge(
+            `ml-2 text-gray-900 w-full ${
+              checked ? "line-through text-gray-500" : ""
+            } ${classNameLabel}`
+          )}
         >
           {text}
         </label>

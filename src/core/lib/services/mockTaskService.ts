@@ -1,6 +1,6 @@
-import { Task } from "@/core/types/taskType";
+import { TaskModel } from "@/core/models/TaskModel";
 
-const addTaskToLocalStorage = (task: Task, userId: string) => {
+const addTaskToLocalStorage = (task: TaskModel, userId: string) => {
   const keyTasks = "tasks" + userId;
   
   const tasks = JSON.parse(localStorage.getItem(keyTasks) || "[]");
@@ -8,7 +8,7 @@ const addTaskToLocalStorage = (task: Task, userId: string) => {
   localStorage.setItem(keyTasks, JSON.stringify(tasks));
 };
 
-const updateTaskInLocalStorage = (tasks: Task[], userId: string) => {
+const updateTaskInLocalStorage = (tasks: TaskModel[], userId: string) => {
   const keyTasks = "tasks" + userId;
   localStorage.setItem(keyTasks, JSON.stringify(tasks));
 };
@@ -21,11 +21,11 @@ const deleteTaskFromLocalStorage = (id: number, userId: string) => {
   localStorage.setItem(keyTasks, JSON.stringify(tasks));
 };
 
-const getTasksByUser = (userId: string): Promise<Task[]> => {
-  return new Promise<Task[]>((resolve) => {
+const getTasksByUser = (userId: string): Promise<TaskModel[]> => {
+  return new Promise<TaskModel[]>((resolve) => {
     setTimeout(() => {
       const tasksKey = "tasks" + userId;
-      const tasks: Task[] = localStorage.getItem(tasksKey)
+      const tasks: TaskModel[] = localStorage.getItem(tasksKey)
         ? JSON.parse(localStorage.getItem(tasksKey) || "[]")
         : [];
       resolve(tasks);

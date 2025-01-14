@@ -8,6 +8,7 @@ import Checkbox from "@/core/ui/atoms/Checkbox/Checkbox";
 import { IconButton } from "@/core/ui/atoms/IconButton/IconButton";
 import { Input } from "@/core/ui/atoms/Input/Input";
 import LoadingSpinner from "@/core/ui/atoms/LoadingSpinner/LoadingSpinner";
+import { FaPlay } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { MdDeleteOutline, MdOutlineUpdate } from "react-icons/md";
 
@@ -21,13 +22,14 @@ export default function TodoApp() {
     toggleTask,
     handleSetTaskToUpdate,
     loading,
+    toggleTaskToInProgress,
   } = useHandleTask();
 
   const { user } = useUserStore();
   const { logout } = useAuth();
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg text-black">
+    <div className="max-w-xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg text-black">
       <div className="flex items-center justify-end space-x-2">
         <h1 className="text-sm text-end">Welcome {user.name}</h1>
         <IconButton
@@ -58,16 +60,26 @@ export default function TodoApp() {
             <Checkbox
               id={`task-${task.id}`}
               text={task.text}
-              checked={task.completed}
+              checked={task.status === "completed"}
               onChange={() => toggleTask(task.id)}
               key={task.id}
+              classNameLabel={
+                task.status === "in-progress" ? "text-blue-500" : ""
+              }
             />
 
             <div className="flex items-center space-x-2">
-              {!task.completed && (
+              {!(task.status === "completed") && (
                 <IconButton
                   icon={<MdOutlineUpdate size={20} />}
                   onClick={() => handleSetTaskToUpdate(task)}
+                />
+              )}
+
+              {task.status !== "completed" && task.status !== "in-progress" && (
+                <IconButton
+                  icon={<FaPlay size={20} />}
+                  onClick={() => toggleTaskToInProgress(task.id)}
                 />
               )}
 
