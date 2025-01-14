@@ -18,7 +18,7 @@
 
 import { useAuth } from "@/core/hooks/useAuth";
 import showToast from "@/core/lib/utils/showToast";
-import LoginTemplate from "@/core/ui/templates/LoginTemplate";
+import LoginTemplate from "@/core/ui/templates/LoginTemplate/LoginTemplate";
 import { useEffect, useState } from "react";
 
 export default function LoginPage() {

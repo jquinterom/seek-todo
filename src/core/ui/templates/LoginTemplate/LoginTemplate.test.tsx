@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import LoginTemplate from "./LoginTemplate";
 import userEvent from "@testing-library/user-event";
+import LoginTemplate from "./LoginTemplate";
 
 const handleSubmit = jest.fn((event) => event.preventDefault());
 const setEmail = jest.fn();

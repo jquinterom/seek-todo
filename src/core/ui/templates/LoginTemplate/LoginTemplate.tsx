@@ -4,8 +4,8 @@ import Card, {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../molecules/Card/Card";
-import FormLogin from "../organisms/FormLogin/FormLogin";
+} from "../../molecules/Card/Card";
+import FormLogin from "../../organisms/FormLogin/FormLogin";
 
 interface LoginTemplateProps {
   handleSubmit: (event: React.FormEvent) => void;

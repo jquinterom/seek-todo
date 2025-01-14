@@ -27,6 +27,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputProps>(
           required
           ref={ref}
           className={"w-full"}
+          placeholder="Your password"
         />
 
         <Button
