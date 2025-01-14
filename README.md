@@ -42,6 +42,15 @@ bun run test
 npm test
 ```
 
+## Storybook
+If you want to run storybook:
+```bash
+bun run storybook
+# or
+npm run storybook
+```
+Go to [http://localhost:6006](http://localhost:6006) to see the result.
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Tech
@@ -50,6 +59,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - Zustand
 - React Test Library
 - Jest
+- Storybook
 - React Icons
 - Typescript
 - bun
