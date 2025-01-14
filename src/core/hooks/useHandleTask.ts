@@ -38,8 +38,8 @@ const useHandleTask = () => {
     mockTaskService.updateTaskInLocalStorage(newTasks, user.email);
   };
 
-  const handleTask = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleTask = (event: React.FormEvent) => {
+    event.preventDefault();
 
     if (!newTaskIsValid(newTask)) return;
 

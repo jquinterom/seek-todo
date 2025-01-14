@@ -7,7 +7,7 @@ interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const LoadingSpinner = forwardRef<HTMLDivElement, SpinnerProps>(
-  ({ size = 20, color = "border-gray-500", ...props }, ref) => {
+  ({ size = 20, color = "border-white", ...props }, ref) => {
     return (
       <div
         ref={ref}

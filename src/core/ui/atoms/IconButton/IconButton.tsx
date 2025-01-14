@@ -1,8 +1,8 @@
-import { forwardRef } from "react";
+import { ButtonHTMLAttributes, forwardRef } from "react";
 import Button from "../Button/Button";
 import { ButtonType } from "@/core/types/buttonType";
 
-interface IconButtonProps {
+interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: React.ReactNode;
   onClick?: () => void;
   typeButton?: ButtonType;
@@ -17,6 +17,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         onClick={props.onClick}
         typeButton={typeButton}
         role="button"
+        className={props.className}
       >
         {NewIcon}
       </Button>

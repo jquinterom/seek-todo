@@ -42,8 +42,9 @@ export const useAuth = () => {
   };
 
   const isAuthenticated = () => {
+    const role = Cookies.get("user_role"); 
     const token = localStorage.getItem("token");
-    if (token) {
+    if (token && role) {
       return true;
     }
     return false;

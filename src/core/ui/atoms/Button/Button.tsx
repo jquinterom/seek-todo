@@ -15,7 +15,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const classByType: Record<ButtonType, string> = {
   primary: "bg-blue-500 hover:bg-blue-700 text-white",
   secondary: "bg-gray-200 hover:bg-gray-300 text-gray-900",
-  tertiary: "bg-gray-100 hover:bg-gray-200 text-gray-900",
+  outline: "border border-gray-300 hover:bg-gray-300 text-gray-900",
   danger: "bg-red-500 hover:bg-red-700 text-white",
   link: "text-blue-500 hover:text-blue-700 text-sm",
   ghost: "text-gray-900 hover:text-gray-700 text-sm",

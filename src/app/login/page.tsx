@@ -1,18 +1,25 @@
 "use client";
 
+/**
+ * This file is part of Seek-todo.
+ * Copyright (C) 2025 Seek-todo.
+ * https://seek-todo.vercel.app/
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
 import { useAuth } from "@/core/hooks/useAuth";
 import showToast from "@/core/lib/utils/showToast";
-import Button from "@/core/ui/atoms/Button/Button";
-import { Input } from "@/core/ui/atoms/Input/Input";
-import Card, {
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/core/ui/molecules/Card/Card";
-import { InputPassword } from "@/core/ui/molecules/InputPassword/InputPassword";
+import LoginTemplate from "@/core/ui/templates/LoginTemplate";
 import { useEffect, useState } from "react";
-import { Toaster } from "react-hot-toast";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -20,8 +27,8 @@ export default function LoginPage() {
 
   const { login, success, error, loading, isAuthenticated } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     await login(email, password);
   };
 
@@ -47,47 +54,13 @@ export default function LoginPage() {
   }, [error]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <Toaster />
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">
-            Login
-          </CardTitle>
-          <CardDescription className="text-center text-gray-500">
-            Enter your email and password to access your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2 flex flex-col">
-              <label htmlFor="email">Email</label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="john.doe@example.com"
-                value={email}
-                onChange={(element) => setEmail(element.target.value)}
-                required
-              />
-            </div>
-            <div className="space-y-2 flex flex-col">
-              <label htmlFor="password">Password</label>
-              <InputPassword
-                id="password"
-                type="password"
-                value={password}
-                onChange={(element) => setPassword(element.target.value)}
-                required
-                placeholder="Your password"
-              />
-            </div>
-            <Button type="submit" className="w-full" loading={loading}>
-              Sign In
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+    <LoginTemplate
+      handleSubmit={handleSubmit}
+      loading={loading}
+      email={email}
+      password={password}
+      setEmail={setEmail}
+      setPassword={setPassword}
+    />
   );
 }

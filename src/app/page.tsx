@@ -3,14 +3,9 @@
 import { useAuth } from "@/core/hooks/useAuth";
 import useHandleTask from "@/core/hooks/useHandleTask";
 import { useUserStore } from "@/core/store/taskStore";
-import Button from "@/core/ui/atoms/Button/Button";
-import Checkbox from "@/core/ui/atoms/Checkbox/Checkbox";
-import { IconButton } from "@/core/ui/atoms/IconButton/IconButton";
-import { Input } from "@/core/ui/atoms/Input/Input";
-import LoadingSpinner from "@/core/ui/atoms/LoadingSpinner/LoadingSpinner";
-import { FaPlay } from "react-icons/fa";
-import { FiLogOut } from "react-icons/fi";
-import { MdDeleteOutline, MdOutlineUpdate } from "react-icons/md";
+import FormInputTask from "@/core/ui/organisms/FormInputTask/FormInputTask";
+import HeaderTaskList from "@/core/ui/organisms/HeaderTaskList/HeaderTaskList";
+import TaskList from "@/core/ui/organisms/TaskList/TaskList";
 
 export default function TodoApp() {
   const {
@@ -30,74 +25,24 @@ export default function TodoApp() {
 
   return (
     <div className="max-w-xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg text-black">
-      <div className="flex items-center justify-end space-x-2">
-        <h1 className="text-sm text-end">Welcome {user.name}</h1>
-        <IconButton
-          typeButton="ghost"
-          icon={<FiLogOut size={20} />}
-          onClick={logout}
-        />
-      </div>
+      <HeaderTaskList user={user} logout={logout} />
 
       <h1 className="text-2xl font-bold mb-6 text-center ">Todo App</h1>
 
-      <form onSubmit={handleTask} className="mb-6">
-        <div className="flex space-x-2">
-          <Input
-            value={newTask}
-            onChange={(element) => setNewTask(element.target.value)}
-          />
-          <Button type="submit"> Save </Button>
-        </div>
-      </form>
+      <FormInputTask
+        onSubmit={handleTask}
+        text={newTask}
+        onChange={setNewTask}
+      />
 
-      <ul className="space-y-2">
-        {tasks.map((task) => (
-          <li
-            key={task.id}
-            className="flex items-center space-x-2 justify-between"
-          >
-            <Checkbox
-              id={`task-${task.id}`}
-              text={task.text}
-              checked={task.status === "completed"}
-              onChange={() => toggleTask(task.id)}
-              key={task.id}
-              classNameLabel={
-                task.status === "in-progress" ? "text-blue-500" : ""
-              }
-            />
-
-            <div className="flex items-center space-x-2">
-              {!(task.status === "completed") && (
-                <IconButton
-                  icon={<MdOutlineUpdate size={20} />}
-                  onClick={() => handleSetTaskToUpdate(task)}
-                />
-              )}
-
-              {task.status !== "completed" && task.status !== "in-progress" && (
-                <IconButton
-                  icon={<FaPlay size={20} />}
-                  onClick={() => toggleTaskToInProgress(task.id)}
-                />
-              )}
-
-              <IconButton
-                icon={<MdDeleteOutline size={20} />}
-                onClick={() => handleRemove(task.id)}
-                typeButton="danger"
-              />
-            </div>
-          </li>
-        ))}
-
-        {loading && (
-          <div className="flex items-center justify-center">
-            <LoadingSpinner size={25} color="border-blue-500" />
-          </div>
-        )}
-      </ul>
+      <TaskList
+        tasks={tasks}
+        loading={loading}
+        toggleTask={toggleTask}
+        handleSetTaskToUpdate={handleSetTaskToUpdate}
+        handleRemove={handleRemove}
+        toggleTaskToInProgress={toggleTaskToInProgress}
+      />
     </div>
   );
 }
