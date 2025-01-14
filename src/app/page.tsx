@@ -19,6 +19,7 @@ export default function TodoApp() {
     handleRemove,
     toggleTask,
     handleSetTaskToUpdate,
+    loading,
   } = useHandleTask();
 
   const { user } = useUserStore();
@@ -39,7 +40,10 @@ export default function TodoApp() {
 
       <form onSubmit={handleTask} className="mb-6">
         <div className="flex space-x-2">
-          <Input value={newTask} onChange={(e) => setNewTask(e.target.value)} />
+          <Input
+            value={newTask}
+            onChange={(element) => setNewTask(element.target.value)}
+          />
           <Button type="submit"> Save </Button>
         </div>
       </form>
@@ -69,6 +73,9 @@ export default function TodoApp() {
             )}
           </li>
         ))}
+        {loading && (
+          <div className="flex items-center justify-center">Loading...</div>
+        )}
       </ul>
     </div>
   );
